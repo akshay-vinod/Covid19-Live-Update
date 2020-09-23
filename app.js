@@ -4,7 +4,7 @@ card3 = document.querySelector(".card03");
 card4 = document.querySelector(".card04");
 updatedTime = document.querySelector(".updated-time");
 red = document.querySelector(".confirmed");
-blue = document.querySelector(".tested");
+blue = document.querySelector(".active");
 green = document.querySelector(".recovered");
 grey = document.querySelector(".deceased");
 card1.addEventListener('mouseover', function () {
@@ -81,6 +81,21 @@ window.addEventListener('load', () => {
                 })
 
         });*/
+    fetch("https://api.covid19india.org/data.json")
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data.statewise);
+            let i = 0;
+            while (data.statewise[i].statecode != "KL") {
+                i++;
+            }
+            console.log(data.statewise[i].statecode);
+            blue.textContent = data.statewise[i].active;
+            console.log(data.statewise[i].lastupdatedtime);
+
+        })
     fetch("https://api.covid19india.org/states_daily.json")
         .then(dailydata => {
             return dailydata.json();
