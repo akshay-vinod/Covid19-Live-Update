@@ -44,7 +44,7 @@ window.addEventListener('load', () => {
     year = d.getUTCFullYear();
     month = d.getUTCMonth() + 1;
     day = d.getUTCDate();
-    let api;
+    /*(let api;
     if (month < 10) {
         api = `https://api.covid19india.org/v4/data-${year}-0${month}-${day}.json`;
     }
@@ -80,6 +80,19 @@ window.addEventListener('load', () => {
 
                 })
 
-        });
+        });*/
+    fetch("https://api.covid19india.org/states_daily.json")
+        .then(dailydata => {
+            return dailydata.json();
+        })
+        .then(dailydatajson => {
+            console.log(dailydatajson);
+            let index = dailydatajson.states_daily.length;
+            updatedTime.textContent = dailydatajson.states_daily[index - 1].date;
+            red.textContent = dailydatajson.states_daily[index - 3].kl;
+            //blue.textContent = tested;
+            green.textContent = dailydatajson.states_daily[index - 2].kl;
+            grey.textContent = dailydatajson.states_daily[index - 1].kl;
+        })
 
 });
