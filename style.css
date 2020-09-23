@@ -65,6 +65,7 @@ body {
   flex-wrap: nowrap;
 }
 .box {
+  margin-top: 10vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -114,9 +115,17 @@ body {
 .card04 * {
   margin-top: 10px;
 }
+.set-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
 .lds-ellipsis {
+  align-items: center;
   display: inline-block;
   position: relative;
+  margin-bottom: 40%;
   width: 13vh;
 }
 .lds-ellipsis div {
