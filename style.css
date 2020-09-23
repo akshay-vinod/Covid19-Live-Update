@@ -114,13 +114,6 @@ body {
   font-size: 20px;
   flex-wrap: nowrap;
 }
-.daily-count {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  height: 50vh;
-}
 .box {
   display: flex;
   flex-direction: row;
