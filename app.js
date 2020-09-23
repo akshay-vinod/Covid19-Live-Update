@@ -86,12 +86,10 @@ window.addEventListener('load', () => {
             return response.json();
         })
         .then(data => {
-            console.log(data.statewise);
             let i = 0;
             while (data.statewise[i].statecode != "KL") {
                 i++;
             }
-            console.log(data.statewise[i].statecode);
             blue.textContent = data.statewise[i].active;
             let str = data.statewise[i].lastupdatedtime;
             let monthlist = ["Jan", "Feb", "March", "April", "May", "June", "Jully", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -101,14 +99,12 @@ window.addEventListener('load', () => {
             let event = "AM";
             let hh = parseInt(str.substr(11, 13));
             let min = str.charAt(13);
-            console.log(min);
             if (hh > 12) {
                 event = "PM";
                 hh = hh - 12;
 
             }
             updatedTime.textContent = dd + " " + mm + "," + hh + ":" + str.charAt(14) + str.charAt(15) + " " + event + " IST";
-            console.log(data.statewise[i].lastupdatedtime);
 
         })
     fetch("https://api.covid19india.org/states_daily.json")
@@ -116,10 +112,8 @@ window.addEventListener('load', () => {
             return dailydata.json();
         })
         .then(dailydatajson => {
-            console.log(dailydatajson);
             let index = dailydatajson.states_daily.length;
             red.textContent = dailydatajson.states_daily[index - 3].kl;
-            //blue.textContent = tested;
             green.textContent = dailydatajson.states_daily[index - 2].kl;
             grey.textContent = dailydatajson.states_daily[index - 1].kl;
         })
