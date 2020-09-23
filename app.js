@@ -93,6 +93,21 @@ window.addEventListener('load', () => {
             }
             console.log(data.statewise[i].statecode);
             blue.textContent = data.statewise[i].active;
+            let str = data.statewise[i].lastupdatedtime;
+            let monthlist = ["Jan", "Feb", "March", "April", "May", "June", "Jully", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            let position = parseInt(str.substr(3, 5));
+            mm = monthlist[position - 1];
+            let dd = str.substr(0, 2);
+            let event = "AM";
+            let hh = parseInt(str.substr(11, 13));
+            let min = str.charAt(13);
+            console.log(min);
+            if (hh > 12) {
+                event = "PM";
+                hh = hh - 12;
+
+            }
+            updatedTime.textContent = dd + " " + mm + "," + hh + ":" + str.charAt(14) + str.charAt(15) + " " + event + " IST";
             console.log(data.statewise[i].lastupdatedtime);
 
         })
@@ -103,7 +118,6 @@ window.addEventListener('load', () => {
         .then(dailydatajson => {
             console.log(dailydatajson);
             let index = dailydatajson.states_daily.length;
-            updatedTime.textContent = dailydatajson.states_daily[index - 1].date;
             red.textContent = dailydatajson.states_daily[index - 3].kl;
             //blue.textContent = tested;
             green.textContent = dailydatajson.states_daily[index - 2].kl;
