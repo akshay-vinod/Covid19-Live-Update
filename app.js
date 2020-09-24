@@ -105,7 +105,16 @@ window.addEventListener('load', () => {
                 i++;
             }
             //updating data on website
-            const { confirmed, deaths, recovered, active, deltaconfirmed, deltadeaths, deltarecovered } = data.statewise[i];
+            let { confirmed, deaths, recovered, active, deltaconfirmed, deltadeaths, deltarecovered } = data.statewise[i];
+            //formating data to add ,
+            nfObject = new Intl.NumberFormat('en-US');
+            confirmed = nfObject.format(confirmed);
+            deaths = nfObject.format(deaths);
+            recovered = nfObject.format(recovered);
+            active = nfObject.format(active);
+            deltaconfirmed = nfObject.format(deltaconfirmed);
+            deltadeaths = nfObject.format(deltadeaths);
+            deltarecovered = nfObject.format(deltarecovered);
             blue.textContent = active;
             red.textContent = deltaconfirmed;
             green.textContent = deltarecovered;
