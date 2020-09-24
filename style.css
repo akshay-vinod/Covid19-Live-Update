@@ -115,11 +115,9 @@ body {
 .card04 * {
   margin-top: 10px;
 }
-.set-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+.total_count {
+  margin: 20px;
+  color: rgb(255, 7, 58);
 }
 .lds-ellipsis {
   align-items: center;
