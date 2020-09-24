@@ -112,10 +112,120 @@ window.addEventListener('load', () => {
             grey.textContent = deltadeaths;
             //updating total kerala counts
             totalData.textContent = confirmed;
-            if (randomnumber == 1)
-                totalData.textContent = active;
-            else if (randomnumber == 2)
-                totalData.textContent = recovered;
+            function updatetotal(number) {
+                if (number == 0) {
+                    card1.style.background = "rgba(255, 7, 57, 0.164)";
+                    totalcount.style.color = "rgb(255, 7, 58)";
+                    totalTitle.textContent = "Total Confirmed";
+                    totalData.textContent = confirmed;
+                    card1.addEventListener('mouseout', function () {
+                        card1.style.background = "rgba(255, 7, 57, 0.164)";
+                    });
+                }
+                else if (number == 1) {
+                    card4.style.background = " rgba(0, 123, 255, 0.164)";
+                    totalcount.style.color = "rgb(0, 123, 255)";
+                    totalTitle.textContent = "Active";
+                    totalData.textContent = active;
+                    card4.addEventListener('mouseout', function () {
+                        card4.style.background = "rgba(0, 123, 255, 0.164)";
+                    });
+                }
+                else if (number == 2) {
+                    card2.style.background = " rgba(40, 167, 70, 0.164)";
+                    totalcount.style.color = " rgb(40, 167, 69)";
+                    totalTitle.textContent = "Total Recovered";
+                    totalData.textContent = recovered;
+                    card2.addEventListener('mouseout', function () {
+                        card2.style.background = "rgba(40, 167, 70, 0.164)";
+                    });
+                }
+                else {
+                    card3.style.background = " rgb(108, 117, 125, 0.164)";
+                    totalcount.style.color = " rgb(108, 117, 125)";
+                    totalTitle.textContent = "Total Deceased";
+                    totalData.textContent = deaths;
+                    card3.addEventListener('mouseout', function () {
+                        card3.style.background = "rgb(108, 117, 125, 0.164)";
+                    });
+                }
+            }
+            updatetotal(randomnumber);
+            card1.addEventListener('click', function () {
+                updatetotal(0);
+                card4.style.background = "transparent";
+                card2.style.background = "transparent";
+                card3.style.background = "transparent";
+
+                card4.addEventListener('mouseout', function () {
+                    card4.style.background = "transparent";
+                });
+
+                card2.addEventListener('mouseout', function () {
+                    card2.style.background = "transparent";
+                });
+                card3.addEventListener('mouseout', function () {
+                    card3.style.background = "transparent";
+                });
+
+            });
+
+            card4.addEventListener('click', function () {
+                updatetotal(1);
+                card1.style.background = "transparent";
+                card2.style.background = "transparent";
+                card3.style.background = "transparent";
+
+                card1.addEventListener('mouseout', function () {
+                    card1.style.background = "transparent";
+                });
+
+                card2.addEventListener('mouseout', function () {
+                    card2.style.background = "transparent";
+                });
+                card3.addEventListener('mouseout', function () {
+                    card3.style.background = "transparent";
+                });
+            });
+
+            card2.addEventListener('click', function () {
+                updatetotal(2);
+                card4.style.background = "transparent";
+                card1.style.background = "transparent";
+                card3.style.background = "transparent";
+
+                card4.addEventListener('mouseout', function () {
+                    card4.style.background = "transparent";
+                });
+
+                card1.addEventListener('mouseout', function () {
+                    card1.style.background = "transparent";
+                });
+                card3.addEventListener('mouseout', function () {
+                    card3.style.background = "transparent";
+                });
+            });
+            card3.addEventListener('click', function () {
+                updatetotal(3);
+                card4.style.background = "transparent";
+                card2.style.background = "transparent";
+                card1.style.background = "transparent";
+
+                card4.addEventListener('mouseout', function () {
+                    card4.style.background = "transparent";
+                });
+
+                card2.addEventListener('mouseout', function () {
+                    card2.style.background = "transparent";
+                });
+                card1.addEventListener('mouseout', function () {
+                    card1.style.background = "transparent";
+                });
+            });
+
+
+
+            //updating time fetch
             let str = data.statewise[i].lastupdatedtime;
             let monthlist = ["Jan", "Feb", "March", "April", "May", "June", "Jully", "Aug", "Sep", "Oct", "Nov", "Dec"];
             let position = parseInt(str.substr(3, 5));
@@ -144,7 +254,7 @@ window.addEventListener('load', () => {
             greenCount = dailydatajson.states_daily[index - 2].kl;
             grey.textContent = dailydatajson.states_daily[index - 1].kl;
         })
-    */
+    
     if (randomnumber == 0) {
         card1.style.background = "rgba(255, 7, 57, 0.164)";
         totalcount.style.color = "rgb(255, 7, 58)";
@@ -171,6 +281,6 @@ window.addEventListener('load', () => {
             card2.style.background = "rgba(40, 167, 70, 0.164)";
         });
 
-    }
+    }*/
 
 });
