@@ -11,10 +11,6 @@ blue = document.querySelector(".active");
 green = document.querySelector(".recovered");
 grey = document.querySelector(".deceased");
 
-let redCount;
-let blueCount;
-let greenCount;
-
 card1.addEventListener('mouseover', function () {
     card1.style.background = "rgba(255, 7, 57, 0.164)";
 });
@@ -100,25 +96,55 @@ window.addEventListener('load', () => {
         })
         .then(data => {
             let i = 0;
+            let num;
             //finding the index of kerala covid case data in json
             while (data.statewise[i].statecode != "KL") {
                 i++;
             }
             //updating data on website
             let { confirmed, deaths, recovered, active, deltaconfirmed, deltadeaths, deltarecovered } = data.statewise[i];
+
+            if (deltaconfirmed == 0) {
+                fetch("https://api.covid19india.org/states_daily.json")
+                    .then(dailydata => {
+                        return dailydata.json();
+                    })
+                    .then(dailydatajson => {
+
+                        let index = dailydatajson.states_daily.length;
+                        deltaconfirmed = dailydatajson.states_daily[index - 3].kl;
+                        deltarecovered = dailydatajson.states_daily[index - 2].kl;
+                        deltadeaths = dailydatajson.states_daily[index - 1].kl;
+                        //formating data to add ,
+                        nfObject = new Intl.NumberFormat('en-US');
+                        deltaconfirmed = nfObject.format(deltaconfirmed);
+                        deltadeaths = nfObject.format(deltadeaths);
+                        deltarecovered = nfObject.format(deltarecovered);
+                        //
+                        red.textContent = deltaconfirmed;
+                        green.textContent = deltarecovered;
+                        grey.textContent = deltadeaths;
+                    })
+            }
+            else {
+                //formating data to add ,
+                nfObject = new Intl.NumberFormat('en-US');
+                deltaconfirmed = nfObject.format(deltaconfirmed);
+                deltadeaths = nfObject.format(deltadeaths);
+                deltarecovered = nfObject.format(deltarecovered);
+                //
+                red.textContent = deltaconfirmed;
+                green.textContent = deltarecovered;
+                grey.textContent = deltadeaths;
+            }
             //formating data to add ,
             nfObject = new Intl.NumberFormat('en-US');
             confirmed = nfObject.format(confirmed);
             deaths = nfObject.format(deaths);
             recovered = nfObject.format(recovered);
             active = nfObject.format(active);
-            deltaconfirmed = nfObject.format(deltaconfirmed);
-            deltadeaths = nfObject.format(deltadeaths);
-            deltarecovered = nfObject.format(deltarecovered);
+            //
             blue.textContent = active;
-            red.textContent = deltaconfirmed;
-            green.textContent = deltarecovered;
-            grey.textContent = deltadeaths;
             //updating total kerala counts
             totalData.textContent = confirmed;
             function updatetotal(number) {
