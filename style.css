@@ -68,10 +68,20 @@ body {
   margin-top: 10vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
-
+.cards {
+  display: flex;
+  justify-content: space-between;
+  flex: 2;
+}
+.blank_space1 {
+  flex: 1;
+}
+.blank_space2 {
+  flex: 2;
+}
 .card01,
 .card02,
 .card03,
@@ -123,7 +133,8 @@ body {
   align-items: center;
   display: inline-block;
   position: relative;
-  margin-bottom: 40%;
+  margin-left: 1vh;
+  margin-bottom: 3vh;
   width: 13vh;
 }
 .lds-ellipsis div {
