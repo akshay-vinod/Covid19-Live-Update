@@ -105,16 +105,23 @@ window.addEventListener('load', () => {
             let { confirmed, deaths, recovered, active, deltaconfirmed, deltadeaths, deltarecovered } = data.statewise[i];
 
             if (deltaconfirmed == 0) {
-                fetch("https://api.covid19india.org/states_daily.json")
+                fetch("https://api.covid19india.org/v4/data.json")
                     .then(dailydata => {
                         return dailydata.json();
                     })
                     .then(dailydatajson => {
-
+                        console.log(dailydatajson);
+                        let { confirmed, deceased, recovered } = dailydatajson.KL.delta;
+                        /*
                         let index = dailydatajson.states_daily.length;
                         deltaconfirmed = dailydatajson.states_daily[index - 3].kl;
                         deltarecovered = dailydatajson.states_daily[index - 2].kl;
                         deltadeaths = dailydatajson.states_daily[index - 1].kl;
+                        console.log(deltadeaths);*/
+                        deltaconfirmed = confirmed;
+                        deltarecovered = recovered;
+                        deltadeaths = deceased;
+
                         //formating data to add ,
                         nfObject = new Intl.NumberFormat('en-US');
                         deltaconfirmed = nfObject.format(deltaconfirmed);
